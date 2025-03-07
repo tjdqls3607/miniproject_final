@@ -17,7 +17,7 @@ public class PhoneStoreUI extends JFrame {
 
     public PhoneStoreUI() {
         // Set up the JFrame
-        setTitle("휴대폰 멤버십 등급에 따른 판매 관리");
+        setTitle("멤버십 등급에 따른 휴대폰 판매 관리");
         setSize(500, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(7, 2));
