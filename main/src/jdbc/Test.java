@@ -33,50 +33,6 @@ public class Test {
         }
     }
 
-    // 회원 추가
-    public static int insertMember(int member_id, String name, String phone_number, Date birth_date) {
-        String insertSql = "INSERT INTO member VALUES (?, ?, ?, ?)";
-        try (Connection con = DBManager.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(insertSql)) {
-            pstmt.setInt(1, member_id);
-            pstmt.setString(2, name);
-            pstmt.setString(3, phone_number);
-            pstmt.setDate(4, new java.sql.Date(birth_date.getTime()));
-            return pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    // 회원 정보 수정
-    public static int updateMember(int member_id, String name, String phone_number) {
-        String updateSql = "UPDATE member SET name = ?, phone_number = ? WHERE member_id = ?";
-        try (Connection con = DBManager.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(updateSql)) {
-            pstmt.setString(1, name);
-            pstmt.setString(2, phone_number);
-            pstmt.setInt(3, member_id);
-            return pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    // 회원 삭제
-    public static int deleteMember(int member_id) {
-        String deleteSql = "DELETE FROM member WHERE member_id = ?";
-        try (Connection con = DBManager.getConnection();
-             PreparedStatement pstmt = con.prepareStatement(deleteSql)) {
-            pstmt.setInt(1, member_id);
-            return pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
     // 모든 회원 조회
     public static List<MemberDto> listmember() {
         List<MemberDto> list = new ArrayList<>();
