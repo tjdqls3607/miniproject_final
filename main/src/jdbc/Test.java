@@ -249,4 +249,19 @@ public class Test {
             return -1;
         }
     }
+    public static String getMembershipLevel(int memberId) {
+        String selectSql = "SELECT level FROM membership WHERE member_id = ?";
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement pstmt = con.prepareStatement(selectSql)) {
+            pstmt.setInt(1, memberId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("level");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // 조회 실패
+    }
 }
